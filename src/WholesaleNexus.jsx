@@ -293,7 +293,7 @@ const ZillowIntelligenceView = () => {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
-                        <button 
+                        <button
                             onClick={() => alert(`Analyzing market for: ${searchTerm || "Current Location"}`)}
                             className="bg-white text-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors"
                         >
@@ -304,12 +304,10 @@ const ZillowIntelligenceView = () => {
                 <div className="absolute right-0 top-0 h-full w-1/2 bg-[url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1000')] bg-cover opacity-20 mix-blend-overlay"></div>
             </div>
 
-            </div>
-            
             <div className="flex justify-center my-6">
-                <button 
-                  onClick={() => alert("Market analysis simulation started... This would trigger a real scraper in the production app.")}
-                  className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg"
+                <button
+                    onClick={() => alert("Market analysis simulation started... This would trigger a real scraper in the production app.")}
+                    className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg"
                 >
                     Run Deep Market Scan
                 </button>
@@ -341,7 +339,7 @@ const ZillowIntelligenceView = () => {
                                 <span className="flex items-center gap-1"><MapPin size={16} /> {prop.sqft} sqft</span>
                             </div>
 
-                            <button 
+                            <button
                                 onClick={() => alert(`Imported ${prop.address} to Pipeline!`)}
                                 className="w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
                             >
