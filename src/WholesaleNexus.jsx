@@ -293,12 +293,26 @@ const ZillowIntelligenceView = () => {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
-                        <button className="bg-white text-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors">
+                        <button 
+                            onClick={() => alert(`Analyzing market for: ${searchTerm || "Current Location"}`)}
+                            className="bg-white text-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors"
+                        >
                             Analyze
                         </button>
                     </div>
                 </div>
                 <div className="absolute right-0 top-0 h-full w-1/2 bg-[url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1000')] bg-cover opacity-20 mix-blend-overlay"></div>
+            </div>
+
+            </div>
+            
+            <div className="flex justify-center my-6">
+                <button 
+                  onClick={() => alert("Market analysis simulation started... This would trigger a real scraper in the production app.")}
+                  className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-lg"
+                >
+                    Run Deep Market Scan
+                </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -327,7 +341,10 @@ const ZillowIntelligenceView = () => {
                                 <span className="flex items-center gap-1"><MapPin size={16} /> {prop.sqft} sqft</span>
                             </div>
 
-                            <button className="w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                            <button 
+                                onClick={() => alert(`Imported ${prop.address} to Pipeline!`)}
+                                className="w-full py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                            >
                                 <Import size={18} />
                                 Import to Pipeline
                             </button>
@@ -335,7 +352,7 @@ const ZillowIntelligenceView = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     );
 };
 
@@ -380,7 +397,10 @@ const DocumentCenterView = () => {
                         </div>
                     </div>
 
-                    <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2">
+                    <button
+                        onClick={() => alert("Contract generated and sent for e-signature!")}
+                        className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2"
+                    >
                         <FileSignature size={20} />
                         Generate & Sign
                     </button>
@@ -399,37 +419,69 @@ const DocumentCenterView = () => {
                     </h1>
 
                     <div className="space-y-6 font-serif leading-relaxed text-justify">
-                        <p>
-                            <strong>THIS AGREEMENT</strong> made this <span className="bg-blue-100 px-2">12th</span> day of <span className="bg-blue-100 px-2">December, 2024</span>, by and between <strong>[BUYER NAME]</strong> (hereinafter referred to as "Buyer") and <strong>[SELLER NAME]</strong> (hereinafter referred to as "Seller").
-                        </p>
+                        {template === 'purchase' ? (
+                            <>
+                                <p>
+                                    <strong>REAL ESTATE PURCHASE AGREEMENT</strong>
+                                </p>
+                                <p>
+                                    <strong>THIS AGREEMENT</strong> made this <span className="bg-blue-100 px-2">12th</span> day of <span className="bg-blue-100 px-2">December, 2024</span>, by and between <strong>[BUYER NAME]</strong> (hereinafter referred to as "Buyer") and <strong>[SELLER NAME]</strong> (hereinafter referred to as "Seller").
+                                </p>
 
-                        <p>
-                            <strong>1. PROPERTY.</strong> Buyer agrees to purchase and Seller agrees to sell the property located at:
-                            <br />
-                            <span className="block my-2 p-3 bg-gray-50 border border-gray-200 italic text-center">[Property Address Will Appear Here]</span>
-                            together with all fixtures, landscaping, improvements, and appurtenances defined herein.
-                        </p>
+                                <p>
+                                    <strong>1. PROPERTY.</strong> Buyer agrees to purchase and Seller agrees to sell the property located at:
+                                    <br />
+                                    <span className="block my-2 p-3 bg-gray-50 border border-gray-200 italic text-center">[Property Address Will Appear Here]</span>
+                                    together with all fixtures, landscaping, improvements, and appurtenances defined herein.
+                                </p>
 
-                        <p>
-                            <strong>2. PURCHASE PRICE.</strong> The total purchase price to be paid for the Property shall be
-                            <span className="mx-2 font-bold">$[Price]</span>, payable as follows:
-                            Earnest money deposit of $1,000.00 to be held in escrow.
-                        </p>
+                                <p>
+                                    <strong>2. PURCHASE PRICE.</strong> The total purchase price to be paid for the Property shall be
+                                    <span className="mx-2 font-bold">$[Price]</span>, payable as follows:
+                                    Earnest money deposit of $1,000.00 to be held in escrow.
+                                </p>
 
-                        <p>
-                            <strong>3. CLOSING.</strong> Closing shall occur on or before [Date], at a title company mutually agreed upon by both parties.
-                        </p>
+                                <p>
+                                    <strong>3. CLOSING.</strong> Closing shall occur on or before [Date], at a title company mutually agreed upon by both parties.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <p>
+                                    <strong>ASSIGNMENT OF CONTRACT AGREEMENT</strong>
+                                </p>
+                                <p>
+                                    <strong>THIS ASSIGNMENT</strong> is made and entered into as of this ____ day of _______, 20__, by and between <strong>[ASSIGNOR NAME]</strong> ("Assignor") and <strong>[ASSIGNEE NAME]</strong> ("Assignee").
+                                </p>
+
+                                <p>
+                                    <strong>1. THE CONTRACT.</strong> Assignor entered into a Purchase and Sale Agreement with the original Seller for the property located at:
+                                    <br />
+                                    <span className="block my-2 p-3 bg-gray-50 border border-gray-200 italic text-center">[Subject Property Address]</span>
+                                </p>
+
+                                <p>
+                                    <strong>2. ASSIGNMENT FEE.</strong> In consideration of the assignment of said contract, the Assignee agrees to pay the Assignor an Assignment Fee of
+                                    <span className="mx-2 font-bold bg-yellow-100">$[Wholesale Fee]</span>
+                                    payable at closing.
+                                </p>
+
+                                <p>
+                                    <strong>3. CLOSING & COSTS.</strong> Assignee assumes all obligations, costs, and risks associated with the original Purchase Agreement, including closing costs and earnest money reimbursement.
+                                </p>
+                            </>
+                        )}
 
                         <div className="mt-20 pt-10 border-t border-black grid grid-cols-2 gap-20">
                             <div>
                                 <div className="h-12 border-b border-black mb-2 font-handwriting text-2xl text-blue-700 pl-4 pt-2">
                                     Sign Here...
                                 </div>
-                                <p className="text-xs uppercase font-bold">Buyer Signature</p>
+                                <p className="text-xs uppercase font-bold">{template === 'purchase' ? 'Buyer' : 'Assignor'} Signature</p>
                             </div>
                             <div>
                                 <div className="h-12 border-b border-black mb-2"></div>
-                                <p className="text-xs uppercase font-bold">Seller Signature</p>
+                                <p className="text-xs uppercase font-bold">{template === 'purchase' ? 'Seller' : 'Assignee'} Signature</p>
                             </div>
                         </div>
                     </div>
@@ -573,7 +625,10 @@ const PipelineTrackingView = () => {
         <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700/50 overflow-hidden">
             <div className="p-6 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center">
                 <h3 className="text-xl font-bold">Deal Pipeline</h3>
-                <button className="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-sm font-bold">
+                <button
+                    onClick={() => alert("Create New Deal modal would open here.")}
+                    className="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-sm font-bold"
+                >
                     + New Deal
                 </button>
             </div>
@@ -609,7 +664,12 @@ const PipelineTrackingView = () => {
                                     {deal.date}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <button className="text-blue-600 hover:text-blue-900 dark:hover:text-blue-400">Edit</button>
+                                    <button
+                                        onClick={() => alert(`Editing deal: ${deal.address}`)}
+                                        className="text-blue-600 hover:text-blue-900 dark:hover:text-blue-400"
+                                    >
+                                        Edit
+                                    </button>
                                 </td>
                             </tr>
                         ))}
